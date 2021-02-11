@@ -2,13 +2,16 @@ require 'socket'
 
 socket = TCPServer.new(4200)
 puts "Listening to the port 4200"
-puts 'Server is going to respond: Hey Client!'
+
 connection = socket.accept
 
 line = connection.gets
 puts "Client requested: #{line}"
 
-connection.puts 'Server responded: Hey Client!'
+content_response = 'Hey Client!'
+
+response = connection.puts "#{content_response}"
+puts "Server is going to respond: #{content_response}"
 
 connection.close
 socket.close
